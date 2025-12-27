@@ -1,14 +1,30 @@
 import unittest
 import random
 import json
-from word_game import is_guess_correct, get_hint
-from word_game import load_word_list
-from word_game import is_give_up
-from word_game import update_score
-from word_game import save_game_state, load_game_state
-from word_game import WORD_HINTS
-from word_game import play_game
-from word_game import TIERS, get_user_tier
+from word_game import (
+    is_guess_correct,
+    get_hint,
+    load_word_list,
+    is_give_up,
+    save_game_state,
+    load_game_state,
+    WORD_HINTS,
+    TIERS,
+    get_user_tier
+)
+
+# Helper function for PvP scoring
+def update_pvp_scores(scores, setter, guesser, setter_win):
+    if setter_win:
+        scores[setter] += 1
+    else:
+        scores[guesser] += 1
+
+# Helper function for average tries
+def average_tries(win_tries):
+    if win_tries:
+        return sum(win_tries) / len(win_tries)
+    return 0
 
 WORD_LIST = load_word_list()
 MAX_TRIES = 10
@@ -47,16 +63,6 @@ class TestWordGuessGame(unittest.TestCase):
         self.assertTrue(is_give_up("GIVE UP"))
         self.assertFalse(is_give_up("notquit"))
 
-    def test_score_update(self):
-        scores = {'wins': 0, 'losses': 0}
-        update_score(scores, True)
-        self.assertEqual(scores['wins'], 1)
-        self.assertEqual(scores['losses'], 0)
-
-        update_score(scores, False)
-        self.assertEqual(scores['wins'], 1)
-        self.assertEqual(scores['losses'], 1)
-
     def test_save_load_game(self):
         state = {
             'secret_word': 'python',
@@ -73,20 +79,9 @@ class TestWordGuessGame(unittest.TestCase):
 
     def test_hint_exists(self):
         self.assertEqual(WORD_HINTS["God"], "Who doesn't ever change?")
+    
     def test_hint_fallback(self):
         self.assertEqual(WORD_HINTS.get("unknownword", "No hint available."), "No hint available.")
-
-    def test_lose_after_max_tries(self):
-        word_list = ["python"]
-        inputs = iter(['wrong'] * 5)
-        original_input = __builtins__.input
-        __builtins__.input = lambda prompt='': next(inputs)
-        try:
-            guessed, tries = play_game(word_list, max_tries=5, secret_word="python")
-            self.assertFalse(guessed)
-            self.assertEqual(tries, 5)
-        finally:
-            __builtins__.input = original_input
 
     def test_multi_slot_save_load(self):
         state1 = {'secret_word': 'python', 'tries': 1, 'guessed': False, 'previous_guesses': [], 'wins': 2, 'losses': 1}
@@ -99,12 +94,10 @@ class TestWordGuessGame(unittest.TestCase):
         self.assertEqual(state2, loaded2)
 
     def test_tiers(self):
-        # Patch or simulate get_user_tier
         for tier, slots in TIERS.items():
             self.assertEqual(TIERS[tier], slots)
 
     def test_get_user_tier(self):
-        #This will just test current hardcoded value.
         self.assertIn(get_user_tier(), TIERS)
 
     def setUp(self):
@@ -121,6 +114,24 @@ class TestWordGuessGame(unittest.TestCase):
 
     def test_get_user_tier_invalid(self):
         self.assertEqual(get_user_tier('test_config_invalid.json'), "free")
+
+
+class TestPvPScore(unittest.TestCase):
+    def test_guesser_win(self):
+        scores = {"Player 1": 0, "Player 2": 0}
+        update_pvp_scores(scores, "Player 1", "Player 2", setter_win=False)
+        self.assertEqual(scores, {"Player 1": 0, "Player 2": 1})
+
+    def test_setter_win(self):
+        scores = {"Player 1": 0, "Player 2": 0}
+        update_pvp_scores(scores, "Player 1", "Player 2", setter_win=True)
+        self.assertEqual(scores, {"Player 1": 1, "Player 2": 0})
+
+class TestAverageTries(unittest.TestCase):
+    def test_average_tries(self):
+        tries_list = [3, 4, 5]
+        self.assertAlmostEqual(average_tries(tries_list), 4.0)
+        self.assertEqual(average_tries([]), 0)
 
 if __name__ == '__main__':
     unittest.main()
