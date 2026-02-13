@@ -1,0 +1,8 @@
+User: Justin, Word: Peace, Guesses: ['Faith', 'Peace'], Result: Win, Mode: easy
+User: Justin, Word: Meekness, Guesses: ['meekness'], Result: Win, Mode: easy
+User: Justin, Word: Peace, Guesses: ['Peace'], Result: Win, Mode: easy
+User: Justin, Word: Long-Suffering, Guesses: ['meekness', 'kindness', 'repent', 'jesus', 'lord', 'salvation', 'Faith', 'peace', 'patience', 'Goodness'], Result: Loss, Mode: 1
+User: Justin, Word: Love, Guesses: ['love'], Result: Win, Mode: 
+User: Justin, Word: Patience, Guesses: ['peace', 'patience'], Result: Win, Mode: easy
+User: Justin, Word: Joy, Guesses: ['Joy'], Result: Win, Mode: easy
+User: Bob, Word: Peace, Guesses: ['Peace'], Result: Win, Mode: easy
