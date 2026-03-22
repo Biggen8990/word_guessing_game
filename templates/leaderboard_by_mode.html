@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard by Mode</title>
+</head>
+<body>
+    <h2>Leaderboard by Mode</h2>
+    <form method="post">
+        <label for="mode">Select mode:</label>
+        <select name="mode" id="mode">
+            <option value="easy">Easy</option>
+            <option value="hard">Hard</option>
+        </select>
+        <input type="submit" value="View">
+    </form>
+    {% if scores %}
+    <table border="1">
+        <tr>
+            <th>Player</th>
+            <th>Word</th>
+            <th>Tries</th>
+            <th>Mode</th>
+        </tr>
+        {% for s in scores %}
+        <tr>
+            <td>{{ s['name'] }}</td>
+            <td>{{ s['word'] }}</td>
+            <td>{{ s['tries'] }}</td>
+            <td>{{ s['mode'].title() }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% elif scores is not none %}
+    <p>No scores yet for the selected mode.</p>
+    {% endif %}
+    <br>
+    <a href="/">Return to Main Menu</a>
+</body>
+</html>

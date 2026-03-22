@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard - Word Guessing Game</title>
+</head>
+<body>
+    <h2>Leaderboard — Best Games</h2>
+    <table border="1">
+        <tr>
+            <th>Player</th>
+            <th>Word</th>
+            <th>Tries</th>
+            <th>Mode</th>
+        </tr>
+        {% for s in scores %}
+        <tr>
+            <td>{{ s['name'] }}</td>
+            <td>{{ s['word'] }}</td>
+            <td>{{ s['tries'] }}</td>
+            <td>{{ s.get('mode', 'unknown').title() }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="4">No scores yet.</td></tr>
+        {% endfor %}
+    </table>
+    <p><a href="/">Return to Main Menu</a></p>
+</body>
+</html>

@@ -1,0 +1,25 @@
+from flask import Flask, render_template, request, session, redirect, url_for
+
+app = Flask(__name__)
+app.secret_key = 'super-secret-key'  # Already set if you're using sessions
+
+WORD_LIST = ["god", "jesus", "faith", "love", "grace"]  # or load from file/etc.
+
+@app.route('/play', methods=['GET', 'POST'])
+def play():
+    if 'secret_word' not in session:
+        session['secret_word'] = random.choice(WORD_LIST)
+    message = ""
+    hint = None
+    if request.method == 'POST':
+        guess = request.form['guess']
+        if not guess or guess.strip() == "":
+            message = "Input cannot be blank."
+        elif guess.lower() == session['secret_word']:
+            message = f"Congratulations! You guessed the word: {session['secret_word']}"
+            session.pop('secret_word')
+            return render_template('play.html', message=message, hint=None, game_over=True)
+        else:
+            message = "Not the right word, try again!"
+            hint = f"Hint: The word comes {'after' if guess.lower() < session['secret_word'] else 'before'} your guess alphabetically."
+    return render_template('play.html', message=message, hint=hint, game_over=False)

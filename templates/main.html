@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Guessing Game</title>
+</head>
+<body>
+    <h1>Welcome to the Word Guessing Game</h1>
+    <ul>
+        <p>Welcome, {{ username }}! (Tier: {{ user_tier.title() }})</p>
+        <li><a href="/play">Play Game</a></li>
+        <li><a href="/leaderboard">View Leaderboard</a></li>
+        <li><a href="/leaderboard-by-mode">Leaderboard by Mode</a></li>
+        <li><a href="/profile">View/Edit Profile</a></li>
+        <li><a href="/help">Help/About</a></li>
+        <!-- Add more as you add routes/features (import word list, admin tools, etc.) -->
+    </ul>
+</body>
+</html>

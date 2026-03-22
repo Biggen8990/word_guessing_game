@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Word Guessing Game - Play</title>
+</head>
+<body>
+    <h2>Word Guessing Game</h2>
+    {% if not game_over %}
+    <form method="post">
+        <input name="guess" autocomplete="off" placeholder="Your guess">
+        <input type="submit" value="Guess">
+    </form>
+    {% endif %}
+    <p>{{ message }}</p>
+    {% if hint %}
+        <b>{{ hint }}</b>
+    {% endif %}
+    {% if game_over %}
+        <p><a href="/play">Play Again</a></p>
+        <p><a href="/">Return to Main Menu</a></p>
+    {% else %}
+        <p><a href="/">Return to Main Menu</a></p>
+    {% endif %}
+</body>
+</html>

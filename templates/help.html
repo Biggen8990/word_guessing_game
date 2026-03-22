@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Help / About - Word Guessing Game</title>
+</head>
+<body>
+    <h2>Help / About</h2>
+    <p>Welcome to the Word Guessing Game web app!</p>
+    <ul>
+        <li>Choose "Play Game" from the main menu to start guessing words.</li>
+        <li>Type a guess, or 'give up' to quit the round early and reveal the answer.</li>
+        <li>Type 'y' or 'n' for yes/no prompts.</li>
+        <li>Switch or import a word list using the menu if your tier allows.</li>
+        <li>Check your leaderboard, stats, or progress from the menu.</li>
+        <li>Tier: {{ user_tier.title() }} — see the README for feature details.</li>
+    </ul>
+
+    <h3>FAQ</h3>
+    <ul>
+        <li><b>How do I change difficulty?</b> — Select easy/hard before each round.</li>
+        <li><b>How do I switch players in multiplayer?</b> — Use 'Swap roles' after each round.</li>
+        <li><b>Where are my stats?</b> — Check the leaderboard or user progress (admin).</li>
+        <li><b>Can I use my own word list?</b> — Yes, if your tier unlocks import; see import option in menu.</li>
+    </ul>
+    <a href="/">Return to Main Menu</a>
+</body>
+</html>

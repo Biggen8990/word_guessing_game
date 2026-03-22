@@ -373,6 +373,29 @@ def view_individual_user_log(filename="user_progress.json"):
     except FileNotFoundError:
         print("No user progress found.")
 
+def view_session_history(filename="session_history.txt"):
+    try:
+        with open(filename) as f:
+            print("\n===== Session / Game History =====")
+            for line in f:
+                print(line.strip())
+        print("="*40)
+    except FileNotFoundError:
+        print("No session history found.")
+
+def view_session_history_filtered(filename="session_history.txt"):
+    user = input("Enter a username to filter by or leave blank for all: ").strip()
+    mode = input("Filter by mode (easy/hard) or leave blank: ").strip().lower()
+    try:
+        with open(filename) as f:
+            print("\n===== Session / Game History =====")
+            for line in f:
+                if (not user or f"User: {user}" in line) and (not mode or f"Mode: {mode}" in line):
+                    print(line.strip())
+        print("="*40)
+    except FileNotFoundError:
+        print("No session history found.")
+
 if __name__ == '__main__':
     last_user = get_last_user()
     if last_user:
@@ -423,6 +446,10 @@ if __name__ == '__main__':
             print("11. Export Session/Game History to CSV")
         if user_tier == 'admin':
             print("12. View Individual User Game Log")
+        if user_tier == 'admin':
+            print("13. View Detailed Session Log")
+        if user_tier == 'admin':
+            print("14. View Filtered Session Log")
 
         choice = input("Choose an option: ")
 
@@ -540,3 +567,7 @@ if __name__ == '__main__':
             export_session_history_csv()
         elif choice == '12' and user_tier == 'admin':
             view_individual_user_log()
+        elif choice == '13' and user_tier == 'admin':
+            view_session_history()
+        elif choice == '11' and user_tier == 'admin':
+            view_session_history_filtered()
