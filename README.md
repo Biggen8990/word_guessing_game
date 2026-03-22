@@ -1,69 +1,61 @@
-Word Guessing Game (Python Edition)
-
-A versatile, menu-based word guessing game supporting multi-slot saves, custom themes, user profiles, multiplayer, tiered features, statistics, and admin/teacher reporting—built for fun, learning, and real classroom use.
+Word Guessing Game (Web Edition) 
+A user-friendly, customizable word guessing game for students, teachers, and casual players. Play solo or multiplayer, import your own word lists, and unlock advanced features with higher-level tiers. Includes leaderboard, stats logging, and teacher/admin tools for the classroom or group competitions.
  
  Features 
-
-Flexible word lists: Choose from defaults, import custom lists, or switch lists anytime
-Hints: Contextual and alphabetical hints for every word (with premium early/extra hints)
-Single-player and hotseat multiplayer (PvP), with score tracking and optional role swaps
-Difficulty modes and stat tracking per mode
-Multi-slot save/resume (slots/tier: 1/3/5+/admin)
-User login/profile saving (auto-remembers last user)
-Leaderboard: per-mode high scores, displayed after each win
-Session/game history logging for parental/teacher review (saved to .txt and .json)
-Admin controls: clear leaderboard, view/export user progress/history, and CSV export for audits
-Fully tested with automated test suite
+🎮 Interactive gameplay: guess the secret word with contextual and alphabetical hints
+🔄 Multi-slot save/resume (slots unlocked by tier)
+👥 Multiplayer support (PvP hotseat with score tracking)
+🏆 High scores and average tries tracker by mode and user
+🗂️ Import/preview custom word lists for endless content
+🛡️ Profile and tier selection for users and admins
+📋 Session/game logging, admin stats/reporting, and session export (CSV)
+💡 Contextual hints from built-in or custom lists
+✅ Full test suite for every main feature
  
- How To Play
-
-Choose your username/profile (auto-remembers last user)
-Pick your tier (“free”, “paid”, “premium”, “admin”)
-Pick an optional custom word list (for themes, lessons, or fun)
-Set difficulty (easy/hard) and choose single or multiplayer
-Try to guess the secret word!
-Enter your guess, or type give up to reveal the answer and end the round.
-Get hints and see win/loss stats, leaderboards, and your average guess count
-Save and resume on any slot (more slots unlocked for paid/pro/admin)
-Admins/teachers can view and export user progress/stats/reports
+ How to Play 
+Log in or create a user profile (stored locally).
+Choose a word list (default, import your own, or switch at any time).
+Pick difficulty mode (easy/hard) and single or multiplayer.
+Guess the word! Use hints, save games, and see your stats.
+Teachers/admins can view/monitor all users and export session reports.
+ 
+ Tiered Features 
+Tier	Save Slots	Custom Lists	Advanced Stats	Admin Tools
+Free	1	No	Basic	No
+Paid	3	Yes	Yes	No
+Premium	5+	Yes	Yes	No
+Admin	10	Yes	Yes	All
  
  Menu Navigation 
-
-Play Game: Start a new round (single/multiplayer, mode selection)
-View Leaderboard: View top scores
-View Leaderboard by Mode: See scores for easy/hard
-Help/About: See instructions, feature guide, FAQ
-Import Word List (paid+): Add or switch to a custom list (.txt)
-Clear Leaderboard (admin): Resets scores
-View User Progress (admin): See per-user stats/logs, export CSV
-Quit: Exit app
+Play Game: Start a new round and guess the word!
+View Leaderboard: Top scores overall and by mode.
+Help/About: Game instructions, FAQ, and tier info.
+Profile: View or change your username and tier.
+Import Word List/Manage Words (Paid+): Upload or switch custom lists.
+Admin: Clear leaderboard, view/export user progress, and more.
+Save/Resume: Multi-slot support based on your tier.
  
- Tier Features 
-
-Tier	Save Slots	Custom Word List	Advanced Stats	Admin Controls
-Free	1	        No	                Basic	        No
-Paid	3	        Yes	                Yes	            No
-Premium	5+	        Yes	                Yes         	No
-Admin	10	        Yes	                Full	        Yes
+ Tech Stack 
+Python 3.x
+Flask (for web UI and routing)
+HTML/CSS (templating)
+JSON (for save files, logs, and progress)
+Automated testing: unittest
  
- Testing
-
-Automated test scripts included:
+ Getting Started 
+Clone/download this repo.
+Install Flask with pip3 install flask.
+Run with python3 app_web.py.
+Open a browser to http://localhost:5000
+Use built-in or custom word lists (.txt, one word per line).
  
-Validates word list loading, hint logic, multi-slot saves, search/guess correctness, tiered access, PvP scoring, high scores, windowing, and session history.
- 
-Run with:
+ Testing 
+Test all features and logic with:
  
 1python3 word_game_test.py
  
- Quick FAQ
-
-Q: How do I switch word lists?
- A: Choose "Import Word List" from the menu and preview/choose any .txt file (one word per line).
+ Screenshots/Demos 
+(Optional: Add screenshots, GIFs, or a short video demo here)
  
-Q: Why are some menu options hidden or locked?
- A: Some advanced features (multi-slot, import/export, admin) require a non-free or admin tier.
- 
- Author
-
-Justin McVey | GitHub: Biggen8990 | Feb. 13th, 2026
+ Author 
+Justin McVey | 03/22/2026 | GitHub: Biggen8990
