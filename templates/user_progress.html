@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}User Progress{% endblock %}
+{% block content %}
+<h2>User Progress (Session Stats)</h2>
+{% if users %}
+<table>
+    <tr><th>Username</th><th>Games Played</th><th>Wins</th><th>Losses</th><th>Average Tries/Game</th></tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.username }}</td>
+        <td>{{ user.games }}</td>
+        <td>{{ user.wins }}</td>
+        <td>{{ user.losses }}</td>
+        <td>{{ "%.2f"|format(user.avg_tries) }}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% else %}
+<p>No user session history found.</p>
+{% endif %}
+<a href="/">Return to Main Menu</a>
+{% endblock %}

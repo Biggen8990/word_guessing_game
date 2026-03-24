@@ -1,31 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Profile</title>
-</head>
-<body>
-    <h2>Set Your Profile</h2>
-    <form method="post">
-        <label>Username: <input name="username" required></label><br>
-        <label>Tier: 
-            <select name="tier">
-                <option value="free" {% if user_tier=="free" %}selected{% endif %}>Free</option>
-                <option value="paid" {% if user_tier=="paid" %}selected{% endif %}
-                  {% if not demo_mode %}disabled{% endif %}>
-                    Paid {% if not demo_mode %}(coming soon){% endif %}
-                </option>
-                <option value="premium" {% if user_tier=="premium" %}selected{% endif %}
-                  {% if not demo_mode %}disabled{% endif %}>
-                    Premium {% if not demo_mode %}(coming soon){% endif %}
-                </option>
-                <option value="admin" {% if user_tier=="admin" %}selected{% endif %}
-                  {% if not demo_mode %}disabled{% endif %}>
-                    Admin {% if not demo_mode %}(staff only){% endif %}
-                </option>
-            </select>
-        </label><br>
-        <input type="submit" value="Set Profile">
-    </form>
-    <a href="/">Return to Main Menu</a>
-</body>
-</html>
+{% extends "base.html" %}
+{% block title %}View/Edit Profile - Word Guessing Game{% endblock %}
+{% block content %}
+<h2>Your Profile</h2>
+<form method="post">
+    <label>Username: <input name="username" value="{{ username }}"></label><br>
+    <label>Tier: 
+        <select name="tier">
+            <option value="free" {% if user_tier=='free' %}selected{% endif %}>Free</option>
+            <option value="paid" {% if user_tier=='paid' %}selected{% endif %} {% if not demo_mode %}disabled{% endif %}>Paid</option>
+            <option value="premium" {% if user_tier=='premium' %}selected{% endif %} {% if not demo_mode %}disabled{% endif %}>Premium</option>
+            <option value="admin" {% if user_tier=='admin' %}selected{% endif %} {% if not demo_mode %}disabled{% endif %}>Admin</option>
+        </select>
+    </label><br>
+    <input type="submit" value="Update Profile">
+</form>
+<a href="/">Return to Main Menu</a>
+{% endblock %}

@@ -2,24 +2,111 @@
 <html>
 <head>
     <title>Word Guessing Game - Play</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f5f7fa;
+            color: #283747;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+        .game-container {
+            max-width: 480px;
+            margin: 40px auto 0 auto;
+            padding: 32px 24px;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 2px 10px #3b3b3b22;
+        }
+        h2 {
+            text-align: center;
+            color: #2d9ab7;
+        }
+        .message, .hint {
+            font-size: 1.2em;
+            margin: 15px 0;
+            text-align: center;
+        }
+        .message.success {
+            color: green;
+        }
+        .message.error, .hint.fail {
+            color: #ae2323;
+        }
+        .hint {
+            color: #87615e;
+            font-style: italic;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[name="guess"] {
+            padding: 9px 12px;
+            width: 70%;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+            font-size: 1.1em;
+        }
+        input[type="submit"] {
+            background: #2d9ab7;
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 10px 30px;
+            font-size: 1.1em;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #16697a;
+        }
+        .link-bar {
+            margin-top: 18px;
+            text-align: center;
+        }
+        .link-bar a {
+            color: #2d9ab7;
+            text-decoration: none;
+            margin: 0 8px;
+            font-weight: 600;
+        }
+        .link-bar a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-    <h2>Word Guessing Game</h2>
-    {% if not game_over %}
-    <form method="post">
-        <input name="guess" autocomplete="off" placeholder="Your guess">
-        <input type="submit" value="Guess">
-    </form>
-    {% endif %}
-    <p>{{ message }}</p>
-    {% if hint %}
-        <b>{{ hint }}</b>
-    {% endif %}
-    {% if game_over %}
-        <p><a href="/play">Play Again</a></p>
-        <p><a href="/">Return to Main Menu</a></p>
-    {% else %}
-        <p><a href="/">Return to Main Menu</a></p>
-    {% endif %}
+    <div class="game-container">
+        <h2>Word Guessing Game</h2>
+        {% if not game_over %}
+            <form method="post">
+                <input name="guess" type="text" autocomplete="off" placeholder="Type your guess here...">
+                <input type="submit" value="Guess">
+            </form>
+        {% endif %}
+        
+        {% if message %}
+            <div class="message{% if game_over and guessed %} success{% elif game_over %} error{% endif %}">{{ message }}</div>
+        {% endif %}
+
+        {% if hint and not game_over %}
+            <div class="hint">{{ hint }}</div>
+        {% endif %}
+
+        {% if game_over %}
+            <div class="link-bar">
+                <a href="/play?new=1">Play Again</a>
+                <a href="/">Return to Main Menu</a>
+            </div>
+        {% else %}
+            <div class="link-bar">
+                <a href="/">Return to Main Menu</a>
+            </div>
+        {% endif %}
+    </div>
 </body>
 </html>

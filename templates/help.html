@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Help / About - Word Guessing Game</title>
-</head>
-<body>
-    <h2>Help / About</h2>
-    <p>Welcome to the Word Guessing Game web app!</p>
+{% extends "base.html" %}
+{% block title %}Help/About - Word Guessing Game{% endblock %}
+{% block content %}
+<h2>Help / About</h2>
+<p>Welcome to the Word Guessing Game web app!</p>
+<ul>
     <ul>
         <li>Choose "Play Game" from the main menu to start guessing words.</li>
         <li>Type a guess, or 'give up' to quit the round early and reveal the answer.</li>
@@ -22,6 +20,6 @@
         <li><b>Where are my stats?</b> — Check the leaderboard or user progress (admin).</li>
         <li><b>Can I use my own word list?</b> — Yes, if your tier unlocks import; see import option in menu.</li>
     </ul>
-    <a href="/">Return to Main Menu</a>
-</body>
-</html>
+</ul>
+<a href="/">Return to Main Menu</a>
+{% endblock %}
