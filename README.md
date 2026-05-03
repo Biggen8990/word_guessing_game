@@ -52,10 +52,7 @@ Use built-in or custom word lists (.txt, one word per line).
  Testing 
 Test all features and logic with:
  
-1python3 word_game_test.py
- 
- Screenshots/Demos 
-(Optional: Add screenshots, GIFs, or a short video demo here)
+python3 word_game_test.py
  
  Author 
 Justin McVey | 03/22/2026 | GitHub: Biggen8990
